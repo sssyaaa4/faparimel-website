@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Es Teler Faparimel</title>
+  <!-- Font Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icon untuk Logo WhatsApp -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #121212;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+
+    /* Container utama mensimulasikan layar HP */
+    .mobile-card {
+      width: 100%;
+      max-width: 414px;
+      height: 100vh;
+      height: 100dvh;
+      background: linear-gradient(180deg, #ffccd5 0%, #ffb3c1 100%);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+
+    /* Area Scroll Konten */
+    .content-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 90px; /* Jarak untuk bottom navbar */
+    }
+
+    /* Header Brand Top */
+    .brand-header {
+      padding: 16px 20px 10px 20px;
+      color: #ffffff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Area Foto Es Teler (Tanpa gradasi atas, hanya gradasi bawah) */
+    .image-placeholder {
+      width: 100%;
+      height: 250px;
+      background-image: url('faparimel.jpg'); /* <-- Ganti dengan nama file foto kamu */
+      background-size: cover;
+      background-position: center;
+      background-color: #00e600; /* Warna cadangan jika foto tidak ditemukan */
+      position: relative;
+    }
+
+    /* Gradasi bawah agar menyatu dengan warna background bawah */
+    .image-placeholder::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 45px;
+      background: linear-gradient(to top, #ffccd5, transparent);
+      pointer-events: none;
+    }
+
+    /* Teks Judul & Deskripsi */
+    .details-section {
+      padding: 20px;
+    }
+
+    .title-text {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.18);
+    }
+
+    .description-text {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #5a3d46;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .description-text p {
+      margin-bottom: 12px;
+    }
+
+    .description-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Pilihan Varian Ukuran */
+    .size-container {
+      display: flex;
+      gap: 12px;
+    }
+
+    .size-btn {
+      flex: 1;
+      padding: 10px 0;
+      border: none;
+      border-radius: 12px;
+      background-color: #ffffff;
+      color: #ff6b81;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: all 0.25s ease;
+    }
+
+    /* Tampilan tombol yang dipilih (Active / Large style) */
+    .size-btn.active {
+      background-color: #6c757d;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(108, 117, 125, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Bottom Navbar Putih */
+    .bottom-navbar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+      z-index: 100;
+    }
+
+    .total-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .total-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #ff85a2;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .total-price {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #ff477e;
+      line-height: 1.1;
+    }
+
+    .order-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .order-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #ff85a2;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .wa-btn {
+      width: 52px;
+      height: 52px;
+      background-color: #ffb3c1;
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(255, 179, 193, 0.6);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .wa-btn:active {
+      transform: scale(0.92);
+      background-color: #ff94a8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-card">
+    <!-- Konten Atas yang Bisa Di-scroll -->
+    <div class="content-scroll">
+      
+      <!-- Brand Header -->
+      <div class="brand-header">FAPARIMEL</div>
+
+      <!-- Area Foto Es Teler -->
+      <div class="image-placeholder"></div>
+
+      <!-- Detail Deskripsi & Tombol Ukuran -->
+      <div class="details-section">
+        <h1 class="title-text">ES TELER FAPARIMEL</h1>
+        
+        <div class="description-text">
+          <p>Haus melanda? Saatnya segarkan harimu dengan Es Teler Faparimel! Satu suapan, sejuta kesegaran! Es Teler Faparimel racikan spesial dari bahan-bahan buah pilihan yang melimpah dan kuah creamy yang gampang bikin jatuh cinta.</p>
+          <p>Es teler adalah salah satu minuman penutup (dessert) tradisional paling ikonik di Indonesia. Terkenal dengan perpaduan rasa manis, gurih, dan tekstur yang kaya, minuman ini menjadi pilihan utama masyarakat untuk melepaskan dahaga, terutama saat cuaca panas atau sebagai hidangan berbuka puasa.</p>
+        </div>
+
+        <!-- Variabel Ukuran -->
+        <div class="size-container">
+          <button class="size-btn" onclick="selectSize('Small', '5K', this)">SMALL</button>
+          <button class="size-btn" onclick="selectSize('Medium', '10K', this)">MEDIUM</button>
+          <button class="size-btn active" onclick="selectSize('Large', '15K', this)">LARGE</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Navbar Berwarna Putih -->
+    <div class="bottom-navbar">
+      <div class="total-box">
+        <span class="total-label">TOTAL :</span>
+        <span class="total-price" id="totalPrice">15K</span>
+      </div>
+
+      <div class="order-box">
+        <span class="order-label">ORDER :</span>
+        <a href="#" id="waLink" target="_blank" class="wa-btn">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // MASUKKAN NOMOR WHATSAPP KAMU DI SINI (Ganti 628xxxxxxxxxx)
+    const phoneNumber = "6283115827472";
+
+    let currentSize = "Large";
+    let currentPrice = "15K";
+
+    function selectSize(size, price, element) {
+      currentSize = size;
+      currentPrice = price;
+
+      // Ubah tampilan tombol active
+      const buttons = document.querySelectorAll('.size-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+
+      // Update teks total harga
+      document.getElementById('totalPrice').innerText = price;
+
+      // Update hyperlink WhatsApp
+      updateWALink();
+    }
+
+    function updateWALink() {
+      const message = `Halo, saya ingin pesan Es Teler Faparimelnya.\n\nUkuran: ${currentSize}\nTotal: ${currentPrice}\n\nTerima kasih!`;
+      const encodedMessage = encodeURIComponent(message);
+      const waURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      
+      document.getElementById('waLink').href = waURL;
+    }
+
+    // Inisialisasi awal saat halaman dibuka
+    updateWALink();
+  </script>
+
+</body>
+</html>
